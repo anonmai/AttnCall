@@ -5,7 +5,7 @@ import tensorflow as tf
 from transformer.const import MAX_LENGTH_BOTTOM, MAX_LENGTH_TOP, BATCH_SIZE
 from transformer.modelv2 import ModelV2
 from keras.metrics import Precision, Recall
-from f1score import F1Score
+from transformer.f1score import F1Score
 
 
 class TrainModel:

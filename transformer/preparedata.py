@@ -2,7 +2,7 @@ import tensorflow as tf
 from utils import fileutil
 import os
 import multiprocessing
-import tokengeneration
+from transformer import tokengeneration
 
 
 class PrepareData:

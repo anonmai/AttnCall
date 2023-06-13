@@ -1,7 +1,6 @@
 import tensorflow as tf
 from keras.metrics import Precision, Recall
 
-
 class F1Score(tf.keras.metrics.Metric):
     def __init__(self, name='f1_score', **kwargs):
         super().__init__(name=name, **kwargs)

@@ -54,20 +54,20 @@ class ModelV1(tf.keras.Model):
 
     def call(self, x, *args, **kwargs):
         # 这一步的输入为 (batch, MAX_LENGTH)
-        print('x0 shape = ', x.shape)        # x0 shape = (None, 240)
+        print('x0 shape = ', x.shape)        # x0 shape = (None, 200)
         # 1. 经过这一步，会变为 (batch, NUM_INS * 3, embed的维度)
         x1 = self.pos_embedding(x)
-        print('x1 shape = ', x1.shape)       # x1 shape = (None, 30, 10)
+        print('x1 shape = ', x1.shape)       # x1 shape = (None, 60, 5)
 
         # 2. dropout暂时没加，加上接口等以后可能会用到
         x2 = self.dropout(x1)
-        print('x2 shape = ', x2.shape)       # x2 shape = (None, 30, 10)
+        print('x2 shape = ', x2.shape)       # x2 shape = (None, 60, 5)
 
         # 3. 所有的encoder layer层依次调用，x形状不变
         for i in range(self.num_layers):
             x2 = self.enc_layers[i](x2)
         x3 = x2
-        print('x3 shape = ', x3.shape)       # x3 shape = (None, 30, 10)
+        print('x3 shape = ', x3.shape)       # x3 shape = (None, 60, 5)
 
         # 4. 把输出变为0/1
         x4 = tf.reshape(x3, [-1, x3.shape[1] * x3.shape[2]])
